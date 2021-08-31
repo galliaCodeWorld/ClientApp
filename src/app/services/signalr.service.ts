@@ -1,12 +1,11 @@
-/////<reference path="../../node_modules/@types/jquery/index.d.ts" />
-/////<reference path="../../node_modules/@types/signalr/index.d.ts" />
+///<reference path="../../../node_modules/@types/jquery/index.d.ts" />
+///<reference path="../../../node_modules/@types/signalr/index.d.ts" />
 // NOTE: use signalr.service for all requests that requires initial communications with the authorization server
 // where the client_id is exchanged. The app will not store the client_id, the client_id is stored on
 // the signalr server, which will act as a proxy between the app and the authorization server
 import { Injectable } from '@angular/core';
-import * as $ from 'jquery';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import 'signalr';
+declare let $: any;
 import {
 	ConfigService,
 	JsHelperService,
@@ -55,58 +54,58 @@ export class SignalrService {
 		public router: Router,
 
 	) {
-		this.connection = $.hubConnection(this.configService.hubUrl, {});
-		this.webRtcHub = this.connection.createHubProxy(this.configService.webRtcHubProxyName);
-		// this is required to activate the OnConnected(), OnDisconnected()
-		// server methods. Here we just register a dummy client method to establish communications with hub
-		// so the OnConnected() from signalr hub gets called
-		this.webRtcHub.on("dummyConnection", function (message) {
-			//console.log("DummyConnection: ", message);
-		});
+    this.connection = $.hubConnection(this.configService.hubUrl, {});
+    this.webRtcHub = this.connection.createHubProxy(this.configService.webRtcHubProxyName);
+    // this is required to activate the OnConnected(), OnDisconnected()
+    // server methods. Here we just register a dummy client method to establish communications with hub
+    // so the OnConnected() from signalr hub gets called
+    this.webRtcHub.on("dummyConnection", function (message: any) {
+      //console.log("DummyConnection: ", message);
+    });
 
-		this.clientIdHub = this.connection.createHubProxy(this.configService.clientIdHubProxyName);
-		this.clientIdHub.state.ip = "";
+    this.clientIdHub = this.connection.createHubProxy(this.configService.clientIdHubProxyName);
+    this.clientIdHub.state.ip = "";
 
-		// signalr connection state listeners
-		this.connection.disconnected(() => {
-			console.log("signalr.service.ts connection.disconnected");
-			//this.isReady = false;
-		});
+    // signalr connection state listeners
+    this.connection.disconnected(() => {
+      console.log("signalr.service.ts connection.disconnected");
+      //this.isReady = false;
+    });
 
-		this.connection.starting(() => {
-			//console.log("signalr.service.ts connection.starting");
-		});
+    this.connection.starting(() => {
+      //console.log("signalr.service.ts connection.starting");
+    });
 
-		this.connection.received((data: any) => {
-			// NOTE: only turn this on for logging
-			//console.log("signalr.service.ts connection.received data", data);
-		});
+    this.connection.received((data: any) => {
+      // NOTE: only turn this on for logging
+      //console.log("signalr.service.ts connection.received data", data);
+    });
 
-		this.connection.connectionSlow(() => {
-			console.log("signalr.service.ts connection.connectionSlow");
-		});
+    this.connection.connectionSlow(() => {
+      console.log("signalr.service.ts connection.connectionSlow");
+    });
 
-		this.connection.reconnecting(() => {
-			console.log("signalr.service.ts connection.reconnecting");
-			//this.isReady = false;
-		});
+    this.connection.reconnecting(() => {
+      console.log("signalr.service.ts connection.reconnecting");
+      //this.isReady = false;
+    });
 
-		this.connection.reconnected(() => {
-			console.log("signalr.service.ts connection.reconnected");
-			//this.isReady = true;
-		});
+    this.connection.reconnected(() => {
+      console.log("signalr.service.ts connection.reconnected");
+      //this.isReady = true;
+    });
 
-		this.connection.disconnected(() => {
-			console.log("signalr.service.ts connection.disconnected");
-			//this.isReady = false;
-		})
+    this.connection.disconnected(() => {
+      console.log("signalr.service.ts connection.disconnected");
+      //this.isReady = false;
+    })
 
-		this.connection.stateChanged((stateChanged: SignalR.StateChanged) => {
-			//console.log("signalr.service.ts connection.stateChanged stateChanged: ", stateChanged);
-			//console.log(SignalR.ConnectionState.Connected)
-			//let connectionState: SignalR.ConnectionStates;
-			this.handleSignalrStateChange(stateChanged);
-		});
+    this.connection.stateChanged((stateChanged: SignalR.StateChanged) => {
+      //console.log("signalr.service.ts connection.stateChanged stateChanged: ", stateChanged);
+      //console.log(SignalR.ConnectionState.Connected)
+      //let connectionState: SignalR.ConnectionStates;
+      this.handleSignalrStateChange(stateChanged);
+    });
 	}
 
 	get proxySecret(): string {

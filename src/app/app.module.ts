@@ -4,14 +4,46 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppModuleMaterials } from './app.module.materials';
 import {
-  AppComponent, ShowFormErrorsComponent,
   // used in service
-  PhoneCallComponent, PhoneCallActionPopover, PrivateMessagingComponent, MemberLoginFormComponent, LoginOptionsComponent,
+  ShowFormErrorsComponent, PhoneCallComponent, PhoneCallActionPopover,
+  PrivateMessagingComponent, MemberLoginFormComponent, LoginOptionsComponent,
   // used in pages
+  HomeComponent,
+  Page404Component, PageErrorComponent,
 } from './components/index'
+import {
+  PageCanActivate,
+  GuestCanActivate,
+  MemberCanActivate,
+  EmployeeCompaniesResolver
+} from "./guards/index";
+import {
+  ContactService,
+  SettingsService,
+  VideoHelperService,
+  ConfigService,
+  SignalrService,
+  JsHelperService,
+  LocalStorageService,
+  BlockCallService,
+  UserService,
+  PushService,
+  PermissionsService,
+  FlashMessageService,
+  CapturePhotoService,
+  MaterialsHelperService,
+  PbxService,
+  FormsErrorService,
+  Service,
+  MeetingService,
+  NetcastService,
+} from './services/index';
+import { MapperService } from './services/mapper.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +55,9 @@ import {
     PhoneCallActionPopover,
     PrivateMessagingComponent,
     // used in page
+    HomeComponent,
+    Page404Component,
+    PageErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +76,33 @@ import {
       }
     ),
   ],
-  providers: [],
+  providers: [
+    { provide: 'ORIGIN_URL', useValue: location.origin },
+    ContactService,
+    SettingsService,
+    VideoHelperService,
+    ConfigService,
+    SignalrService,
+    JsHelperService,
+    LocalStorageService,
+    BlockCallService,
+    UserService,
+    PushService,
+    PermissionsService,
+    FlashMessageService,
+    CapturePhotoService,
+    MaterialsHelperService,
+    PbxService,
+    FormsErrorService,
+    Service,
+    PageCanActivate,
+    GuestCanActivate,
+    MemberCanActivate,
+    EmployeeCompaniesResolver,
+    MeetingService,
+    NetcastService,
+    MapperService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,3 @@
-export * from './app/app.component';
 // used in service
 export * from './show-form-errors/show-form-errors.component';
 export * from './login-options/login-options.component';
@@ -11,15 +10,16 @@ export * from './phone-call-action-popover/phone-call-action-popover.component';
 export * from './phone-call/phone-call.component';
 export * from './private-messaging/private-messaging.component';
 // used in page
+export * from './home/home.component';
+export * from './page404/page404.component';
+export * from './page-error/page-error.component';
+
 // export * from './profile-summary/profile-summary.component';
 // export * from './navmenu/navmenu.component';
 // export * from './navmenu/navmenu.component';
 
-// export * from './home/home.component';
 
-// export * from './page404/page404.component';
 
-// export * from './page-error/page-error.component';
 
 // export * from './login-shell/login-shell.component'
 // export * from './h-loader/h-loader.component';
