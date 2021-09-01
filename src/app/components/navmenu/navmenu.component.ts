@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 import { filter, distinctUntilKeyChanged } from "rxjs/operators"
 
 @Component({
+  selector: 'navmenu-component',
 	templateUrl: './navmenu.component.html',
 	styleUrls: ['./navmenu.component.scss']
 })

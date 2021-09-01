@@ -20,8 +20,6 @@ import {
 import {
 	ConfigService
 } from './index';
-import { Component } from '@angular/core/src/metadata/directives';
-import { ComponentRef } from '@angular/core/src/linker/component_factory';
 
 @Injectable()
 export class MaterialsHelperService {
