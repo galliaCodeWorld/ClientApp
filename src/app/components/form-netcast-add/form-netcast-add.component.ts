@@ -81,7 +81,8 @@ export class FormNetcastAddComponent {
 	image: string = this.defaultAvatar;
 
 	model!: NetcastDto;
-	formGroup!: FormGroup
+	formGroup!: FormGroup;
+  selected!: any;
 
 	createForm() {
 		this.formGroup = this.fb.group({

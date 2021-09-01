@@ -13,7 +13,7 @@
 			<div class="form-group">
 				<label><strong>Email: </strong></label>
 				<input class="form-control" formControlName="email" placeholder="email name">
-				<show-form-errors [control]="formGroup.get('email')"></show-form-errors>
+				<show-form-errors [control]="employeeInviteForm.get('email')"></show-form-errors>
 			</div>
 		</form>
 		<button [disabled]="!employeeInviteForm.valid" (click)="inviteEmployee()" class="btn btn-primary btn-lg">Invite Employee</button>

@@ -56,7 +56,11 @@ export class FormCompanyLocationAddComponent {
 	image: string = this.defaultAvatar;
 
 	model!: CompanyLocationDto;
-	formGroup!: FormGroup
+
+	formGroup!: FormGroup;
+
+  selected!: any;
+
 
 	createForm() {
 		this.formGroup = this.fb.group({

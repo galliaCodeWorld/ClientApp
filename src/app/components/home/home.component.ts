@@ -1,6 +1,7 @@
+///<reference path="../../../../node_modules/@types/jquery/index.d.ts" />
+///<reference path="../../../../node_modules/@types/signalr/index.d.ts" />
 import { Component } from '@angular/core';
 
-import 'signalr';
 import 'webrtc-adapter';
 import {
 	Router,
@@ -25,6 +26,7 @@ export class HomeComponent {
 		let self = this;
 		console.log("started");
 		$(function () {
+      alert('home.component.ts...')
 			let jsHelper = new MultiPlatformChat.JsHelper();
 			console.log("jsHelper: ", jsHelper);
 

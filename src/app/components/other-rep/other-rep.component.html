@@ -7,7 +7,7 @@
 		<p *ngIf="title">Title: {{title}}</p>
 		<p *ngIf="email">Contact: {{email}}</p>
 		<p *ngIf="pbxLineName">Pbx Line: {{pbxLineName}}</p>
-		<button class="btn btn-primary" (click)="sendPage()">
+		<button class="btn btn-primary" (click)="sendPage($event)">
 			<i class="fa fa-bullhorn"></i>
 			Page
 		</button>

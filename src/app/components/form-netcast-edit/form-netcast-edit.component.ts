@@ -55,7 +55,8 @@ export class FormNetcastEditComponent {
 	image: string = this.defaultAvatar;
 	isPrivate!: boolean;
 	netcast!: NetcastDto;
-	formGroup!: FormGroup
+	formGroup!: FormGroup;
+  selected!: any;
 
 	viewModel!: NetcastViewModel;
 

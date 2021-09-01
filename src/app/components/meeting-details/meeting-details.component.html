@@ -12,7 +12,9 @@
 	<h3 class="card-header">Attendees</h3>
 	<ul class="list-group list-group-flush">
 		<li class="list-group-item" *ngFor="let attendee of attendees">
-			<meeting-attendee [canDelete]="false" [meetingAttendee]="attendee" (onMeetingAttendeeDeleted)="deleteMeetingAttendee($event)"></meeting-attendee>
+			<meeting-attendee [canDelete]="false" [meetingAttendee]="attendee"></meeting-attendee>
+			<!--missing -->
+      <!-- <meeting-attendee [canDelete]="false" [meetingAttendee]="attendee" (onMeetingAttendeeDeleted)="deleteMeetingAttendee($event)"></meeting-attendee> -->
 		</li>
 	</ul>
 </div>

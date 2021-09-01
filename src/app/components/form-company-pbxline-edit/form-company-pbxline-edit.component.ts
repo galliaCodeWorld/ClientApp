@@ -75,6 +75,7 @@ export class FormCompanyPbxlineEditComponent {
 		}
 
 		this.createForm();
+    this.isDisabled = this.model.isDisabled;
 	}
 
 	ngAfterViewInit() {
@@ -92,6 +93,7 @@ export class FormCompanyPbxlineEditComponent {
 
 	model!: PbxLineDto;
 	formGroup!: FormGroup;
+  isDisabled!: boolean;
 
 	createForm() {
 		this.formGroup = this.fb.group({
@@ -104,10 +106,6 @@ export class FormCompanyPbxlineEditComponent {
 				Validators.maxLength(1000),
 				Validators.required
 
-			]),
-
-			isDisabled: new FormControl(this.model.isDisabled, [
-				Validators.required
 			]),
 			selectedEmployees: new FormControl(),
 		})
@@ -135,7 +133,7 @@ export class FormCompanyPbxlineEditComponent {
 
 			this.model.lineName = this.formGroup.get('lineName')?.value;
 			this.model.description = this.formGroup.get('description')?.value;
-			this.model.isDisabled = this.formGroup.get('isDisabled')?.value;
+			this.model.isDisabled = this.isDisabled;
 			setTimeout(() => {
 				this.onEditCompanyPbxline.emit(this.model);
 			}, 100)

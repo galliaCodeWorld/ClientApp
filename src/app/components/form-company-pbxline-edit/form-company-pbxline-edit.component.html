@@ -61,11 +61,10 @@
 		</p>
 	</div>
 
-	<mat-radio-group formControlName="isDisabled" [(ngModel)]="formGroup.get('isDisabled').value">
+	<mat-radio-group [(ngModel)]="isDisabled">
 		<mat-radio-button [value]="false">Active</mat-radio-button>
 		<mat-radio-button [value]="true">Disabled</mat-radio-button>
 	</mat-radio-group>
-	<show-form-errors [control]="formGroup.get('isSuspended')"></show-form-errors>
 
 	<div class="form-group">
 		<label><strong>Add PBX Line Icon: </strong></label>

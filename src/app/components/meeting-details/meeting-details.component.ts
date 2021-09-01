@@ -100,7 +100,7 @@ export class MeetingDetailsComponent {
 		dialog?.close();
 	}
 
-	//deleteMeeting(): void {
+	// deleteMeeting(): void {
 	//    // confirm before performing delete
 	//    let alert = new MaterialActionAlertMessageType();
 	//    alert.title = "Please Confirm";
@@ -119,5 +119,5 @@ export class MeetingDetailsComponent {
 	//            this.onMeetingDeleted.emit(this.inputMeeting);
 	//        }
 	//    });
-	//}
+	// }
 }

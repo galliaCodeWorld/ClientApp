@@ -65,6 +65,7 @@ export class FormCompanyEmployeeEditComponent {
 		}
 
 		this.createForm();
+    this.isSuspended = this.model.isSuspended;
 	}
 
 	defaultAvatar: string = this.service.defaultAvatar;
@@ -76,18 +77,14 @@ export class FormCompanyEmployeeEditComponent {
 	originalImage: string = "";
 
 	model!: CompanyEmployeeDto;
-	formGroup!: FormGroup
+	formGroup!: FormGroup;
+  isSuspended!: boolean;
 
 	createForm() {
 		this.formGroup = this.fb.group({
 			title: new FormControl(this.model.title, [
 				Validators.maxLength(300),
 				Validators.required
-
-			]),
-			isSuspended: new FormControl(this.model.isSuspended, [
-				Validators.required
-
 			]),
 		})
 	}
@@ -106,7 +103,7 @@ export class FormCompanyEmployeeEditComponent {
 				this.onUpdateCompanyEmployeeImage.emit(this.image);
 			}
 			this.model.title = this.formGroup.get('title')?.value;
-			this.model.isSuspended = this.formGroup.get('isSuspended')?.value;
+      this.model.isSuspended = this.isSuspended;
 			this.onEditCompanyEmployee.emit(this.model);
 		}
 		else {

@@ -971,10 +971,10 @@ export class PbxLineComponent implements OnInit {
 
 				resolve(componentRef);
 			}
-			else {
-				// the dom already has the phoneLineConnection phoneCallComponent
-				resolve();
-			}
+			// else {
+			// 	// the dom already has the phoneLineConnection phoneCallComponent
+			// 	resolve();
+			// }
 		})
 	}
 

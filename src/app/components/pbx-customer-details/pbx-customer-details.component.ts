@@ -41,9 +41,9 @@ export class PbxCustomerDetailsComponent {
 	ngOnDestroy() {
 	}
 
-	async sendInvite(event: Event): Promise<void> {
+	async sendInvite(): Promise<void> {
 		this.onSendInvite.emit(this.customer);
-		this.close(null);
+		this.close();
 	}
 
 	async displayOutgoingCall(duration: number = 60): Promise<void> {
@@ -83,7 +83,7 @@ export class PbxCustomerDetailsComponent {
 		}
 	}
 
-	close(event: any): void {
+	close(): void {
 		let dialog = this.matDialog.getDialogById('pbx-customer-details-' + this.customer.id)
 		dialog && dialog.close();
 	}

@@ -31,13 +31,10 @@
 		<show-form-errors [control]="formGroup.get('title')"></show-form-errors>
 	</div>
 
-  <div *ngif="formGroup.get('isSuspended')?.value">
-    <mat-radio-group formControlName="isSuspended" [(ngModel)]="formGroup.get('isSuspended').value">
-      <mat-radio-button [value]="false">Active</mat-radio-button>
-      <mat-radio-button [value]="true">Suspended</mat-radio-button>
-    </mat-radio-group>
-  </div>
-	<show-form-errors [control]="formGroup.get('isSuspended')"></show-form-errors>
+  <mat-radio-group [(ngModel)]="isSuspended">
+    <mat-radio-button [value]="false">Active</mat-radio-button>
+    <mat-radio-button [value]="true">Suspended</mat-radio-button>
+  </mat-radio-group>
 
 	<div class="form-group">
 		<label><strong>Add Photo: </strong></label>

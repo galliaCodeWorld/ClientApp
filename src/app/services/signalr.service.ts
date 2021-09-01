@@ -54,6 +54,7 @@ export class SignalrService {
 		public router: Router,
 
 	) {
+    alert('signaliR.service.ts...')
     this.connection = $.hubConnection(this.configService.hubUrl, {});
     this.webRtcHub = this.connection.createHubProxy(this.configService.webRtcHubProxyName);
     // this is required to activate the OnConnected(), OnDisconnected()

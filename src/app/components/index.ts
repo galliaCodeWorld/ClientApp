@@ -10,7 +10,7 @@ export * from './phone-call-action-popover/phone-call-action-popover.component';
 export * from './phone-call/phone-call.component';
 export * from './private-messaging/private-messaging.component';
 // used in page
-export * from './home/home.component';
+// export * from './home/home.component';
 export * from './page404/page404.component';
 export * from './page-error/page-error.component';
 export * from './profile-summary/profile-summary.component';
@@ -33,9 +33,12 @@ export * from './create-pbx-line/create-pbx-line.component';
 export * from './invite-employee/invite-employee.component';
 export * from './call-queue/call-queue.component';
 export * from './pbx-line/pbx-line.component'
-export * from './pbx-line/pbx-line-video/pbx-line-video.component'
+export * from './pbx-line/pbx-line-call.component';
 export * from './pbx-line/pbx-line-chat/pbx-line-chat.component'
 export * from './pbx-line/pbx-line-queue/pbx-line-queue.component'
+export * from './pbx-line/pbx-line-outgoing-call-dialog/pbx-line-outgoing-call-dialog.component';
+export * from './pbx-line/pbx-line-information/pbx-line-information.component';
+export * from './pbx-line/pbx-line-video/pbx-line-video.component'
 export * from './pbx-customer/pbx-customer.component';
 export * from './pbx-search/pbx-search.component';
 export * from './pbx-search/pbx-search-box/pbx-search-box.component';
@@ -45,11 +48,8 @@ export * from './pbx-customer/pbx-customer.component';
 //export * from './pbx-customer/pbx-customer-call.component';
 //export * from './dashboard/pbx-rep-incoming-call/pbx-rep-incoming-call.component';
 //export * from './dashboard/pbx-customer-incoming-call/pbx-customer-incoming-call.component';
-export * from './pbx-line/pbx-line-call.component';
 export * from './pbx-employers/pbx-employers.component';
 //export * from './pbx-customer/pbx-customer-incoming-call/pbx-customer-incoming-call.component';
-export * from './pbx-line/pbx-line-information/pbx-line-information.component';
-export * from './pbx-line/pbx-line-outgoing-call-dialog/pbx-line-outgoing-call-dialog.component';
 export * from './employee-companies/employee-companies.component';
 export * from './guest-login-form/guest-login-form.component';
 export * from './register-form/register-form.component';

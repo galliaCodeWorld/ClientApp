@@ -80,6 +80,8 @@ export class FormEditMeetingComponent {
 		{ 'key': '6 Hr', 'value': 360 }
 	];
 
+  selected!: any;
+
 	ngOnInit() {
 		// get meetingDto from data object or from input attribute
 		if (this.service.isEmpty(this.data) === false && this.data.hasOwnProperty('meetingId')) {
