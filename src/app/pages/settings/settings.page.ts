@@ -131,9 +131,8 @@ export class SettingsPage {
 			this.service.stopMediaStream(this.service.localMediaStream);
 		}
 		this.service.localMediaStream = null!;
-
-		this.localVideoElement.nativeElement.srcObject = null;
-
+    if (this.localVideoElement?.nativeElement?.srcObject)
+		  this.localVideoElement.nativeElement.srcObject = null;
 		return;
 	}
 

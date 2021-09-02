@@ -26,6 +26,10 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "optimization": {
+              "scripts": true,
+              "styles": true
+            },
             "assets": [
               "src/assets"
             ],

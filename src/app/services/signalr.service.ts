@@ -352,11 +352,14 @@ export class SignalrService {
 		try {
 			//console.log("init signalr service");
 			//await this.startConnection();
+      alert('strange ip');
 			let ip = await this.requestIp();
+      console.log('strange ip...', ip);
 
 			await this.setIp(ip);
 			let proxySecret = await this.requestProxySecret(this.ip);
 			//console.log("proxySecret: ", proxySecret);
+      console.log('next step setIP....');
 			await this.setProxySecret(proxySecret);
 			//let jwtToken = await this.getNewGuestToken();
 			//console.log("jwtToken: ", jwtToken);
@@ -506,11 +509,13 @@ export class SignalrService {
 	requestProxySecret(ip: string): Promise<string> {
 		return new Promise<string>((resolve, reject) => {
 			let verificationSecret = this.jsHelperService.createHash(ip);
+      console.log('test... signalr.service', verificationSecret, ip);
 			//console.log("verificationSecret:", verificationSecret);
 			this.clientIdHub.invoke('requestProxySecret', verificationSecret)
 				.then((response) => {
 					//console.log("requestProxySecret response:", response);
 					let signalrResponse: SignalrHttpResponseType = this.jsHelperService.parseSignalrResponse(response)
+          console.log('test...', this.jsHelperService.isEmpty(signalrResponse), signalrResponse )
 					if (this.jsHelperService.isEmpty(signalrResponse) === false && signalrResponse.statusCode === HttpStatusCodeEnum.ok) {
 						let proxySecret = signalrResponse.content;
 						resolve(proxySecret);
