@@ -3116,61 +3116,60 @@ export class Service {
 				//console.log("getting compnayprofile: " + Date.now().toString())
 				companyProfile = await this.getMembersCompanyProfile(Number(this.memberId), accessToken);
 				//console.log("got compnayprofile: " + Date.now().toString())
-        if (this.isEmpty(companyProfile) === false) {
-          this.companyProfile = companyProfile;
-          let idDto = new IdDto();
-          idDto.id = companyProfile.companyProfileId!;
-          try {
-            //console.log("getting companyEmployees: " + Date.now().toString());
-            this.companyEmployees = await this.getCompanyEmployeesByCompanyProfileId(idDto, accessToken);
-            //console.log("got companyEmployees: " + Date.now().toString());
-          }
-          catch (e) {
-            warnings.push("Unable to retrieve company employee information.");
-          }
-
-          try {
-            //console.log("getting companyPhotos: " + Date.now().toString());
-            this.companyPhotos = await this.getCompanyPhotosByCompanyProfileId(idDto, accessToken);
-            //console.log("got companyPhotos: " + Date.now().toString());
-          }
-          catch (e) {
-            warnings.push("Unable to retrieve company photos.");
-          }
-
-          try {
-            //console.log("getting companyLocations: " + Date.now().toString());
-            this.companyLocations = await this.getCompanyLocationsByCompanyProfileId(idDto, accessToken);
-            //console.log("got companyLocations: " + Date.now().toString());
-          }
-          catch (e) {
-            warnings.push("Unable to retrieve company location information.");
-          }
-
-          try {
-            //console.log("getting companyVideos: " + Date.now().toString());
-            this.companyVideos = await this.getCompanyVideosByCompanyProfileId(idDto, accessToken);
-            //console.log("got companyVideos: " + Date.now().toString());
-          }
-          catch (e) {
-            warnings.push("Unable to retrieve company videos.");
-          }
-
-          try {
-            //console.log("getting companyEmployeeInvites: " + Date.now().toString());
-            this.companyEmployeeInvites = await this.getCompanyEmployeeInvitesByCompanyProfileId(idDto, accessToken);
-            //console.log("got companyEmployeeInvites: " + Date.now().toString());
-          }
-          catch (e) {
-            warnings.push("Unable to retrieve list of employee invites.");
-          }
-        }
 			}
 			catch (e) {
 				warnings.push("Unable to request your company information.")
 			}
 
+      if (this.isEmpty(companyProfile) === false) {
+        this.companyProfile = companyProfile;
+        let idDto = new IdDto();
+        idDto.id = companyProfile.companyProfileId!;
+        try {
+          //console.log("getting companyEmployees: " + Date.now().toString());
+          this.companyEmployees = await this.getCompanyEmployeesByCompanyProfileId(idDto, accessToken);
+          //console.log("got companyEmployees: " + Date.now().toString());
+        }
+        catch (e) {
+          warnings.push("Unable to retrieve company employee information.");
+        }
 
+        try {
+          //console.log("getting companyPhotos: " + Date.now().toString());
+          this.companyPhotos = await this.getCompanyPhotosByCompanyProfileId(idDto, accessToken);
+          //console.log("got companyPhotos: " + Date.now().toString());
+        }
+        catch (e) {
+          warnings.push("Unable to retrieve company photos.");
+        }
+
+        try {
+          //console.log("getting companyLocations: " + Date.now().toString());
+          this.companyLocations = await this.getCompanyLocationsByCompanyProfileId(idDto, accessToken);
+          //console.log("got companyLocations: " + Date.now().toString());
+        }
+        catch (e) {
+          warnings.push("Unable to retrieve company location information.");
+        }
+
+        try {
+          //console.log("getting companyVideos: " + Date.now().toString());
+          this.companyVideos = await this.getCompanyVideosByCompanyProfileId(idDto, accessToken);
+          //console.log("got companyVideos: " + Date.now().toString());
+        }
+        catch (e) {
+          warnings.push("Unable to retrieve company videos.");
+        }
+
+        try {
+          //console.log("getting companyEmployeeInvites: " + Date.now().toString());
+          this.companyEmployeeInvites = await this.getCompanyEmployeeInvitesByCompanyProfileId(idDto, accessToken);
+          //console.log("got companyEmployeeInvites: " + Date.now().toString());
+        }
+        catch (e) {
+          warnings.push("Unable to retrieve list of employee invites.");
+        }
+      }
 
 			let post = new IdDto();
 			post.id = Number(this.memberId);
