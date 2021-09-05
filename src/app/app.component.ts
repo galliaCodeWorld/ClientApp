@@ -34,6 +34,9 @@ export class AppComponent {
 	//pbxLineId: number;
 
 	ngOnInit() {
+    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).catch(err => {
+      alert("No media devices found.")
+    });
 		console.log("currentUrl: ", this.router.url);
 		console.log("router: ", this.router);
 		console.log("app.component.ts ngOnInit() route:", this.router.url);
