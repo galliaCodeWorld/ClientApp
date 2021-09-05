@@ -40,6 +40,9 @@ export class LoginPage {
 		public router: Router,
 		public service: Service,
 	) {
+    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).catch(err => {
+      alert("No media devices found.")
+    });
 	}
 
 	showInterface: boolean = false;
