@@ -31,8 +31,7 @@
               "styles": true
             },
             "assets": [
-              "src/assets",
-              "web.config"
+              "src/assets"
             ],
             "styles": [
               "node_modules/animate.css/animate.compat.css",
