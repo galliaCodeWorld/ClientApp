@@ -25,20 +25,30 @@ export class ImageSelectorComponent {
 	}
 
 	openCamera(): void {
-		//console.log("open camera");
-		let dialogRef = this.matDialog.open(PhotoCameraComponent, {
-			width: '80%',
-			height: '80%'
-		})
+    try {
+       navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+    }
+    catch(e) {
 
-		dialogRef.componentInstance.onUsePhoto.subscribe((imageDataUri: string) => {
-			this.onImageSelected.emit(imageDataUri);
-			dialogRef.close();
-		});
+    }
+    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(res => {
+      console.log("open camera...", res);
+      let dialogRef = this.matDialog.open(PhotoCameraComponent, {
+        width: '80%',
+        height: '80%'
+      })
 
-		dialogRef.afterClosed().subscribe(() => {
-			dialogRef.componentInstance.onUsePhoto.unsubscribe();
-		});
+      dialogRef.componentInstance.onUsePhoto.subscribe((imageDataUri: string) => {
+        this.onImageSelected.emit(imageDataUri);
+        dialogRef.close();
+      });
+
+      dialogRef.afterClosed().subscribe(() => {
+        dialogRef.componentInstance.onUsePhoto.unsubscribe();
+      });
+    }).catch(err => {
+      throw ("No media devices found.");
+    })
 	}
 
 	//openAddContactModal(): void {

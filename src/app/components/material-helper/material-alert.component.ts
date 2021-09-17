@@ -22,6 +22,7 @@ export class MaterialAlertComponent {
 	htmlContent!: SafeHtml;
 
 	ngOnInit() {
+    console.log('test...', this.data)
 		this.htmlContent = this.domSanitizer.bypassSecurityTrustHtml(this.data.message);
 	}
 
