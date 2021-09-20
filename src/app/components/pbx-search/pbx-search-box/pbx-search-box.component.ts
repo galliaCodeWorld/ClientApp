@@ -56,7 +56,7 @@ export class PbxSearchBoxComponent implements OnInit {
 
     filter(searchTerm: string): string[] {
         return this.countryIsoCodes.filter(option =>
-           (option.countryIsoCode.toLowerCase().includes(searchTerm.toLowerCase()) 
+           (option.countryIsoCode.toLowerCase().includes(searchTerm.toLowerCase())
            || option.countryName.toLowerCase().startsWith(searchTerm.toLowerCase())));
     }
 
@@ -101,10 +101,10 @@ export class PbxSearchBoxComponent implements OnInit {
                 term: this.searchForm.get('searchTerm').value
             }, access_token)
                 .then((searchResults: CompanyProfileDto[]) => {
-                    console.log(searchResults)
+                    console.log('pbx-search-box...', searchResults)
                     this.searchFound.emit(searchResults)
                 })
-                .catch(error => console.log(error))
+              .catch(error => console.log('pbx-search-box...', error))
                 .then(() => this.isSearching = false)
         }
     }

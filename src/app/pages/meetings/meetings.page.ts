@@ -63,7 +63,6 @@ export class MeetingsPage {
 			})
 			.then((meetings: Array<MeetingDto>) => {
 				this.meetings = meetings;
-				//console.log("this.meetings: ", this.meetings);
 			})
 			.catch((e) => {
 				console.log("error while getting upcoming meetings: ", e);

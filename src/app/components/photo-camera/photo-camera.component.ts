@@ -54,7 +54,6 @@ export class PhotoCameraComponent {
 	stopCamera(video: HTMLVideoElement): void {
 		if (video && video.srcObject) {
 			video.srcObject = null;
-
 			//video.srcObject.getTracks().forEach(track => track.stop());
 		}
 	}

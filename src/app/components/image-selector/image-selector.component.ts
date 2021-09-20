@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnDestroy, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { Service } from '../../services/index'
@@ -19,18 +19,13 @@ export class ImageSelectorComponent {
 	) {
 	}
 
+  @Input() title: String = "ADD Photo";
 	@Output() onImageSelected: EventEmitter<string> = new EventEmitter<string>();
 
 	ngOnInit() {
 	}
 
 	openCamera(): void {
-    try {
-       navigator.mediaDevices.getUserMedia({ audio: true, video: true })
-    }
-    catch(e) {
-
-    }
     navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(res => {
       console.log("open camera...", res);
       let dialogRef = this.matDialog.open(PhotoCameraComponent, {
@@ -47,7 +42,11 @@ export class ImageSelectorComponent {
         dialogRef.componentInstance.onUsePhoto.unsubscribe();
       });
     }).catch(err => {
-      throw ("No media devices found.");
+      let alert = new MaterialAlertMessageType();
+      alert.title = "Camera Error";
+      alert.message = "Unable to retrieve video. Unable to retrieve a camera";
+      this.service.openAlert(alert);
+      console.log("No media devices found.");
     })
 	}
 

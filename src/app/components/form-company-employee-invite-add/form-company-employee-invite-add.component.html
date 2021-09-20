@@ -46,11 +46,14 @@
 		</div>
 	</div>
 
-	<button (click)="cancel()" class="btn-danger" *ngIf="!showProgress">
-		Cancel
-	</button>
-	<button (click)="submit()" class="btn-primary" *ngIf="!showProgress">
-		<i class="fa fa-plus"></i>
-		Create and Send Invitation
-	</button>
+  <div class="d-flex justify-content-between base-line">
+    <button (click)="cancel()" class="btn-danger" *ngIf="!showProgress">
+      Cancel
+    </button>
+    <button (click)="submit()" class="btn-primary" *ngIf="!showProgress">
+      <i class="fa fa-plus"></i>
+      Create and Send Invitation
+    </button>
+  </div>
+
 </form>

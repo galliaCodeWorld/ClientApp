@@ -79,7 +79,7 @@ export class CompanyPbxlinesPage {
 	getPbxlinesFromServer(accessToken: string): void {
 		this.showGettingPbxlines = true;
     let dto = new IdDto();
-    if (this.service.companyProfile.companyProfileId) 
+    if (this.service.companyProfile.companyProfileId)
       dto.id = this.service.companyProfile.companyProfileId;
 		this.service.getPbxLinesByCompanyProfileId(dto, accessToken)
 			.then((pbxLines: Array<PbxLineDto>) => {

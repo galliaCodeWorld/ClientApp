@@ -38,7 +38,7 @@
 					</div>
 
 					<div *ngIf="!loading">
-						<div *ngIf="meetings.length > 0">
+						<div *ngIf="meetings && meetings.length">
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item" *ngFor="let meeting of meetings">
 									<meeting-item [meeting]="meeting" (onMeetingDeleted)="deleteMeeting($event)"></meeting-item>
@@ -46,7 +46,7 @@
 							</ul>
 						</div>
 
-						<div *ngIf="meetings.length < 1">
+						<div *ngIf="!mettings || !meetings.length">
 							<div class="jumbotron">
 								<h2>No upcoming meetings found.</h2>
 							</div>

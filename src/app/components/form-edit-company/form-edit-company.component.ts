@@ -71,7 +71,9 @@ export class FormEditCompanyComponent {
 	image: string = this.defaultAvatar;
 
 	model!: CompanyProfileDto;
-	formGroup!: FormGroup
+	formGroup!: FormGroup;
+
+  title: String = "Add New Logo";
 
 	createForm() {
 		this.formGroup = this.fb.group({

@@ -40,7 +40,6 @@ import {
 } from "../../models/index";
 
 import { Service } from "../../services/index";
-import { FormCompanyPhotoAddComponent } from "../../components/index";
 
 @Component({
 	templateUrl: './company-edit.page.html'
@@ -101,6 +100,7 @@ export class CompanyEditPage {
 						this.photos = this.service.companyPhotos;
 						this.videos = this.service.companyVideos;
 						this.locations = this.service.companyLocations;
+            console.log('test loadModel...', this.companyProfile, this.employees, this.photos, this.videos, this.locations)
 					})
 					.then(() => {
 						resolve();
@@ -204,7 +204,7 @@ export class CompanyEditPage {
 	}
 
 	addCompanyProfileImage(dataUri: string, accessToken: string): void {
-		this.service.addCompanyProfileImage(dataUri, 
+		this.service.addCompanyProfileImage(dataUri,
       this.companyProfile.companyProfileId ? this.companyProfile.companyProfileId : 0,
       accessToken)
 			.then((companyProfile: CompanyProfileDto) => {

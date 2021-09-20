@@ -16,10 +16,14 @@
 <div class="media" *ngIf="!loading">
 	<img class="mr-3" src="{{imgSrc}}" *ngIf="imgSrc" />
 	<div class="media-body">
-		<h4 class="mt-0"><strong>{{firstName}} {{lastName}}</strong></h4>
-		<p>
-			{{email}}
-		</p>
+    <div class="d-flex justify-content-between base-line">
+      <h4 class="mt-0"><strong>{{firstName}} {{lastName}}</strong></h4>
+      <button class="btn btn-primary btn-sm" *ngIf="!isAccepted" (click)="delete()">
+        <i class="fa fa-trash"></i>
+        Delete
+      </button>
+    </div>
+		<p>{{email}}</p>
 		<p *ngIf="isAccepted">
 			<span class="text-success"><strong>Accepted:</strong> {{dateAccepted}}</span>
 		</p>
@@ -44,11 +48,6 @@
 				<button class="btn btn-primary btn-sm" *ngIf="isAccepted && companyEmployee" [routerLink]="['/public-user-profile', companyEmployee.memberId]">
 					<i class="fa fa-user-circle-o"></i>
 					Profile
-				</button>
-
-				<button class="btn btn-primary btn-sm" *ngIf="!isAccepted" (click)="delete()">
-					<i class="fa fa-trash"></i>
-					Delete
 				</button>
 			</div>
 		</div>

@@ -24,47 +24,55 @@ export class ButtonAddPbxlineComponent {
 	reps!: Array<CompanyEmployeeDto>;
 
 	openModalForm(): void {
-		let dialogRef = this.matDialog.open(FormCompanyPbxlineAddComponent, {
-			width: '80%',
-			height: '80%'
-		});
+    console.log('test reps...', this.reps)
+    if (this.reps && this.reps.length) {
+      let dialogRef = this.matDialog.open(FormCompanyPbxlineAddComponent, {
+        width: '80%',
+        height: '80%'
+      });
 
-		dialogRef.componentInstance.onAddCompanyPbxline.subscribe(async (pbxline: PbxLineDto) => {
-			try {
-				dialogRef.componentInstance.showProgress = true;
-				let newPbxline: PbxLineDto = await this.addPbxline(pbxline);
+      dialogRef.componentInstance.onAddCompanyPbxline.subscribe(async (pbxline: PbxLineDto) => {
+        try {
+          dialogRef.componentInstance.showProgress = true;
+          let newPbxline: PbxLineDto = await this.addPbxline(pbxline);
 
-				this.onCompanyPbxlineAdded.emit(newPbxline);
-				dialogRef.componentInstance.showProgress = false;
-				dialogRef.close();
-			}
-			catch (e) {
-				console.log("error while trying to create new pbxline: ", e);
-				let alert = new MaterialAlertMessageType();
-				alert.title = "ERROR";
-				alert.message = "An error occurred while trying to create a new Pbx Line.";
-				this.service.openAlert(alert);
-			}
-		});
+          this.onCompanyPbxlineAdded.emit(newPbxline);
+          dialogRef.componentInstance.showProgress = false;
+          dialogRef.close();
+        }
+        catch (e) {
+          console.log("error while trying to create new pbxline: ", e);
+          let alert = new MaterialAlertMessageType();
+          alert.title = "ERROR";
+          alert.message = "An error occurred while trying to create a new Pbx Line.";
+          this.service.openAlert(alert);
+        }
+      });
 
-		dialogRef.componentInstance.onAddCompanyPbxlineImage.subscribe((dataUri: string) => {
-			this.image = dataUri;
-		});
+      dialogRef.componentInstance.onAddCompanyPbxlineImage.subscribe((dataUri: string) => {
+        this.image = dataUri;
+      });
 
-		dialogRef.componentInstance.onSelectedReps.subscribe((reps: Array<CompanyEmployeeDto>) => {
-			this.reps = reps;
-		});
+      dialogRef.componentInstance.onSelectedReps.subscribe((reps: Array<CompanyEmployeeDto>) => {
+        this.reps = reps;
+      });
 
-		dialogRef.componentInstance.onCancel.subscribe(() => {
-			dialogRef.close();
-		});
+      dialogRef.componentInstance.onCancel.subscribe(() => {
+        dialogRef.close();
+      });
 
-		dialogRef.afterClosed().subscribe(() => {
-			dialogRef.componentInstance.onCancel.unsubscribe();
-			dialogRef.componentInstance.onSelectedReps.unsubscribe();
-			dialogRef.componentInstance.onAddCompanyPbxline.unsubscribe();
-			dialogRef.componentInstance.onAddCompanyPbxlineImage.unsubscribe();
-		});
+      dialogRef.afterClosed().subscribe(() => {
+        dialogRef.componentInstance.onCancel.unsubscribe();
+        dialogRef.componentInstance.onSelectedReps.unsubscribe();
+        dialogRef.componentInstance.onAddCompanyPbxline.unsubscribe();
+        dialogRef.componentInstance.onAddCompanyPbxlineImage.unsubscribe();
+      });
+    } else {
+      let alert = new MaterialAlertMessageType();
+      alert.title = 'Warning';
+      alert.message = "You currently do not have any employees associated with your company. First, Invite employees to assiate their account with your company profile. After employees are associated with your company, you can assign the employees to your PBX Lines";
+      this.service.openAlert(alert);
+    }
 	}
 
 	async addPbxline(pbxline: PbxLineDto): Promise<PbxLineDto> {

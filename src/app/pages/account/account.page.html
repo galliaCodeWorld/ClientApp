@@ -31,7 +31,10 @@
 								<div class="card-text">
 									<strong>Name: </strong> {{formGroup.get('firstName').value}} {{formGroup.get('lastName').value}} <br />
 									<strong>Email: </strong> {{formGroup.get('email').value}} {{formGroup.get('email').value}} <br />
-									<button class="btn btn-danger btn-sm" (click)="removeImage()">Remove Image</button>
+                  <div class="d-flex justify-content-between base-line">
+                    <button class="btn btn-danger btn-sm" (click)="removeImage()">Remove Image</button>
+                    <image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+                  </div>
 								</div>
 							</div>
 						</div>
@@ -107,10 +110,15 @@
 							</div>
 						</div>
 
-						<div class="form-group">
-							<label><strong>Add Photo: </strong></label>
-							<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
-						</div>
+            <div class="d-flex justify-content-between base-line">
+              <button (click)="cancel()" class="btn btn-danger" *ngIf="!showProgress">
+                Cancel
+              </button>
+              <button (click)="submit($event)" class="btn btn-primary" *ngIf="!showProgress">
+                <i class="fa fa-thumbs-up"></i>
+                Update Account Information
+              </button>
+            </div>
 
 						<div *ngIf="showProgress">
 
@@ -127,13 +135,6 @@
 							</div>
 						</div>
 
-						<button (click)="cancel()" class="btn btn-danger" *ngIf="!showProgress">
-							Cancel
-						</button>
-						<button (click)="submit($event)" class="btn btn-primary" *ngIf="!showProgress">
-							<i class="fa fa-thumbs-up"></i>
-							Update Account Information
-						</button>
 					</form>
 				</div>
 			</div>

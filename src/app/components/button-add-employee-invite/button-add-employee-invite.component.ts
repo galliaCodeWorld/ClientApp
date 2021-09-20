@@ -76,12 +76,11 @@ export class ButtonAddEmployeeInviteComponent {
 		try {
 			companyEmployeeInvite.companyProfileId = this.service.companyProfile.companyProfileId!;
 			let newCompanyEmployeeInvite: CompanyEmployeeInviteDto = await this.service.createCompanyEmployeeInvite(companyEmployeeInvite, accessToken)
+      console.log('test send request...', newCompanyEmployeeInvite)
 			return newCompanyEmployeeInvite;
 		}
 		catch (e) {
 			throw (e);
 		}
-		return new Promise<CompanyEmployeeInviteDto>((resolve, reject) => {
-		})
 	}
 }

@@ -1,6 +1,6 @@
 ﻿<div>
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="select-photo" class="btn btn-secondary">
-    <i class="fa fa-file-image-o"></i>
+  <button mat-raised-button color="primary" [matMenuTriggerFor]="menu" aria-label="select-photo">
+    <span><i class="fa fa-file-image-o"></i> {{title}}</span>
   </button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
