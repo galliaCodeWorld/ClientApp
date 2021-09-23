@@ -228,5 +228,6 @@ export class CompanyEditPage {
 
 	companyLocationAdded(companyLocation: CompanyLocationDto): void {
 		this.locations = this.service.companyLocations;
+		console.log('test locations..', this.locations);
 	}
 }

@@ -27,10 +27,13 @@ export class PhotoCameraComponent {
 
 	ngOnInit() {
 		this.canvas = document.createElement('canvas');
-		this.video = this.videoRef.nativeElement;
-		this.photo = this.photoRef.nativeElement;
-		let constraints = { video: true, audio: false };
-		this.startCamera(constraints, this.video);
+		setTimeout(() => {
+			this.video = this.videoRef.nativeElement;
+			this.photo = this.photoRef.nativeElement;
+			let constraints = { video: true, audio: false };
+			this.startCamera(constraints, this.video);
+		});
+		
 	}
 
 	ngOnDestroy() {

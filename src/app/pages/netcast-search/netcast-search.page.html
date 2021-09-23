@@ -129,7 +129,20 @@
 
 								<li class="list-group-item" *ngFor="let item of items">
 									<div class="media">
-										<img class="mr-3 img-circle"
+										<div class="row">
+											<div class="col-3"> 
+												<img class="mr-3 img-circle"
+													src="{{item.imgSrc}}"
+													(click)="gotoNetcastDetails(item.id)" />
+											</div>
+											<div class="col-9">
+												<h3 class="mt-0 pointer" (click)="gotoNetcastDetails(item.id)">{{item.title}}</h3>
+												<p>{{item.content}}</p>
+												<button class="btn btn-sm btn-default border border-secondary" (click)="gotoNetcastDetails(item.id)">View Details</button>
+											</div>
+										</div>
+									
+										<!-- <img class="mr-3 img-circle"
 											 src="{{item.imgSrc}}"
 											 (click)="gotoNetcastDetails(item.id)">
 										<div class="media-body">
@@ -137,7 +150,7 @@
 											<p>{{item.content}}</p>
 
 											<button class="btn btn-sm btn-default border border-secondary" (click)="gotoNetcastDetails(item.id)">View Details</button>
-										</div>
+										</div> -->
 									</div>
 								</li>
 							</ul>

@@ -85,7 +85,7 @@
 									<!--TODO: make this row and cols instead of list-->
 									<div class="row align-content-top justify-content-center" *ngIf="locations">
 										<div class="col-4 mb-3" *ngFor="let location of locations">
-											<company-location [companyLocation]="location"></company-location>
+											<company-location [companyLocation]="location" (onCompanyLocationDeleted)="companyLocationAdded($event)"></company-location>
 										</div>
 									</div>
 								</div>

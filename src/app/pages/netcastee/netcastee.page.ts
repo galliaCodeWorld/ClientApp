@@ -1300,7 +1300,7 @@ export class NetcasteePage implements OnInit, AfterViewInit {
 			console.log("datachannel.onbufferedamountlow event", event)
 		};
 
-		dc.onerror = (event: RTCErrorEvent) => {
+		dc.onerror = (event: any) => {
 			console.log("datachannel.onerror event: ", event);
 		};
 

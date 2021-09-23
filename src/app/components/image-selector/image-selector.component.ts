@@ -19,7 +19,7 @@ export class ImageSelectorComponent {
 	) {
 	}
 
-  @Input() title: String = "ADD Photo";
+  @Input() title: String = "Add Photo";
 	@Output() onImageSelected: EventEmitter<string> = new EventEmitter<string>();
 
 	ngOnInit() {
@@ -27,7 +27,6 @@ export class ImageSelectorComponent {
 
 	openCamera(): void {
     navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(res => {
-      console.log("open camera...", res);
       let dialogRef = this.matDialog.open(PhotoCameraComponent, {
         width: '80%',
         height: '80%'

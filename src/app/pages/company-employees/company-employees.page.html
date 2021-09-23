@@ -41,7 +41,6 @@
 							<mat-list>
 								<ng-container *ngFor="let companyEmployee of companyEmployees">
 									<company-employee [companyEmployee]="companyEmployee" (onDelete)="companyEmployeeDeleted($event)"></company-employee>
-									<mat-divider></mat-divider>
 								</ng-container>
 							</mat-list>
 						</div>

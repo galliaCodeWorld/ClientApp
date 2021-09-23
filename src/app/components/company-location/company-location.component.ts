@@ -202,15 +202,15 @@ export class CompanyLocationComponent {
 			}
 		});
 
-		let card = new IdCardType();
-		card.imgSrc = this.imgSrc;
-		card.subtitle = this.address;
+		// let card = new IdCardType();
+		// card.imgSrc = this.imgSrc;
+		// card.subtitle = this.address;
 
-		let factory = this.componentFactoryResolver.resolveComponentFactory(IdCardComponent);
-		let viewContainerRef: ViewContainerRef = dialogRef.componentInstance.viewContainerRef;
-		let componentRef: ComponentRef<IdCardComponent> = viewContainerRef.createComponent(factory);
-		let idCard: IdCardComponent = componentRef.instance;
-		idCard.idCard = card;
+		// let factory = this.componentFactoryResolver.resolveComponentFactory(IdCardComponent);
+		// let viewContainerRef: ViewContainerRef = dialogRef.componentInstance.viewContainerRef;
+		// let componentRef: ComponentRef<IdCardComponent> = viewContainerRef.createComponent(factory);
+		// let idCard: IdCardComponent = componentRef.instance;
+		// idCard.idCard = card;
 	}
 
 	async performCompanyLocationDelete(companyLocation: CompanyLocationDto): Promise<CompanyLocationDto> {

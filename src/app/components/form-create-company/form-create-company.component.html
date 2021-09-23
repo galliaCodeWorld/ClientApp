@@ -19,11 +19,15 @@
 					{{formGroup.get('description').value}}
 				</span>
 			</div>
-
-			<button class="btn btn-danger btn-sm" (click)="removeAvatar()" *ngIf="image && image != defaultAvatar">
-				<i class="fa fa-trash"></i>
-				Remove Logo
-			</button>
+		</div>
+		<div class="card-footer">
+			<div class="d-flex justify-content-between base-line">
+				<image-selector title="Add Company Logo" (onImageSelected)="onImageSelected($event)"></image-selector>
+				<button class="btn btn-danger btn-sm" (click)="removeAvatar()" *ngIf="image && image != defaultAvatar">
+					<i class="fa fa-trash"></i>
+					Remove Logo
+				</button>
+			</div>
 		</div>
 	</div>
 
@@ -52,11 +56,6 @@
 				  formControlName="description"
 				  placeholder="description"></textarea>
 		<show-form-errors [control]="formGroup.get('description')"></show-form-errors>
-	</div>
-
-	<div class="form-group">
-		<label><strong>Add Company Logo: </strong></label>
-		<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
 	</div>
 
 	<div *ngIf="showProgress">
