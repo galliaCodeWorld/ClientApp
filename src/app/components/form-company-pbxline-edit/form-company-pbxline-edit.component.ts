@@ -96,7 +96,7 @@ export class FormCompanyPbxlineEditComponent {
   isDisabled!: boolean;
 
 	createForm() {
-		this.formGroup = this.fb.group({
+		this.formGroup = new FormGroup({
 			lineName: new FormControl(this.model.lineName, [
 				Validators.maxLength(300),
 				Validators.required
@@ -109,6 +109,19 @@ export class FormCompanyPbxlineEditComponent {
 			]),
 			selectedEmployees: new FormControl(),
 		})
+		// this.formGroup = this.fb.group({
+		// 	lineName: new FormControl(this.model.lineName, [
+		// 		Validators.maxLength(300),
+		// 		Validators.required
+
+		// 	]),
+		// 	description: new FormControl(this.model.description, [
+		// 		Validators.maxLength(1000),
+		// 		Validators.required
+
+		// 	]),
+		// 	selectedEmployees: new FormControl(),
+		// })
 	}
 
 	onImageSelected(imageDataUri: string): void {

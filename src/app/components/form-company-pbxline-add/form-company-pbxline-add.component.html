@@ -46,11 +46,16 @@
 
 	<div class="form-group" >
 		<label><strong>Reps: </strong></label>
-		<select multiple class="form-control" #reps>
+		<mat-selection-list #reps>
+			<mat-list-option *ngFor="let employee of employees">
+				<employee-card [employee]="employee"></employee-card>
+			</mat-list-option>
+		</mat-selection-list>
+		<!-- <select multiple class="form-control" #reps>
 			<option *ngFor="let employee of employees" [value]="employee.companyEmployeeId">
 				<employee-card [employee]="employee"></employee-card>
 			</option>
-		</select>
+		</select> -->
 	</div>
 
   <!-- <p *ngIf="!employees || !employees.length">

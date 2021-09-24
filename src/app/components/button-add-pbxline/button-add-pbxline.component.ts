@@ -21,27 +21,23 @@ export class ButtonAddPbxlineComponent {
 	}
 
 	image!: string;
-	reps!: Array<CompanyEmployeeDto>;
+	reps: Array<CompanyEmployeeDto> = [];
 
 	openModalForm(): void {
-    console.log('test reps...', this.reps)
-    if (this.reps && this.reps.length) {
       let dialogRef = this.matDialog.open(FormCompanyPbxlineAddComponent, {
         width: '80%',
-        height: '80%'
+        height: '90%'
       });
 
       dialogRef.componentInstance.onAddCompanyPbxline.subscribe(async (pbxline: PbxLineDto) => {
         try {
           dialogRef.componentInstance.showProgress = true;
           let newPbxline: PbxLineDto = await this.addPbxline(pbxline);
-
           this.onCompanyPbxlineAdded.emit(newPbxline);
           dialogRef.componentInstance.showProgress = false;
           dialogRef.close();
         }
         catch (e) {
-          console.log("error while trying to create new pbxline: ", e);
           let alert = new MaterialAlertMessageType();
           alert.title = "ERROR";
           alert.message = "An error occurred while trying to create a new Pbx Line.";
@@ -67,12 +63,6 @@ export class ButtonAddPbxlineComponent {
         dialogRef.componentInstance.onAddCompanyPbxline.unsubscribe();
         dialogRef.componentInstance.onAddCompanyPbxlineImage.unsubscribe();
       });
-    } else {
-      let alert = new MaterialAlertMessageType();
-      alert.title = 'Warning';
-      alert.message = "You currently do not have any employees associated with your company. First, Invite employees to assiate their account with your company profile. After employees are associated with your company, you can assign the employees to your PBX Lines";
-      this.service.openAlert(alert);
-    }
 	}
 
 	async addPbxline(pbxline: PbxLineDto): Promise<PbxLineDto> {
@@ -90,20 +80,16 @@ export class ButtonAddPbxlineComponent {
 		try {
       if (this.service.companyProfile.companyProfileId) pbxline.companyProfileId = this.service.companyProfile.companyProfileId;
 			let newPbxline: PbxLineDto = await this.service.createPbxLine(pbxline, accessToken);
-
-			//console.log("newCompanyLocation: ", newCompanyLocation);
 			if (this.service.isEmpty(this.image) === false) {
 				await this.service.addPbxLineImage(this.image, newPbxline.pbxLineId!, accessToken);
 			}
-			else {
-				await this.service.delay(500);
-
-				// wait half a second then check again
-				if (this.service.isEmpty(this.image) === false) {
-					return this.service.addPbxLineImage(this.image, newPbxline.pbxLineId!, accessToken);
-				}
-			}
-
+			// else {
+			// 	await this.service.delay(500);
+			// 	// wait half a second then check again
+			// 	if (this.service.isEmpty(this.image) === false) {
+			// 		return this.service.addPbxLineImage(this.image, newPbxline.pbxLineId!, accessToken);
+			// 	}
+			// }
 			let promises: Array<any> = [];
 
 			if (this.reps.length > 0) {
@@ -115,7 +101,6 @@ export class ButtonAddPbxlineComponent {
 					promises.push(this.service.createPbxLineRep(pbxLineRep, accessToken));
 				})
 			}
-
 			await Promise.all(promises);
 
 			return newPbxline;

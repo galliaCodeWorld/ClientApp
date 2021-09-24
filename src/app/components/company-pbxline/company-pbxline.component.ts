@@ -40,8 +40,8 @@ export class CompanyPbxlineComponent {
 	) { }
 
 	@Input('pbxline') inputPbxline!: PbxLineDto;
-	@Output() onPbxLineDeleted: EventEmitter<PbxLineDto> = new EventEmitter<PbxLineDto>();
-	@Output() onPbxLineUpdated: EventEmitter<PbxLineDto> = new EventEmitter<PbxLineDto>();
+	@Output() onDeletedPbxLine: EventEmitter<any> = new EventEmitter();
+
 
 	_pbxline!: PbxLineDto;
 	get pbxline(): PbxLineDto {
@@ -356,7 +356,6 @@ export class CompanyPbxlineComponent {
 		alert.title = "Please Confirm";
 		alert.message = '<p>Are you sure you want to delete this PBX line.</p>';
 		alert.message += '<p class="text-danger"><strong>Any Employees assigned to this PBX Line will no longer have access to this line.</strong></p>';
-		//alert.message += `<p>${this.address}</p>`;
 		alert.noButton = "Cancel";
 		alert.yesButton = "Delete";
 
@@ -365,15 +364,15 @@ export class CompanyPbxlineComponent {
 			height: '80%',
 			data: alert
 		});
-
 		dialogRef.afterClosed().subscribe(() => {
 			if (alert.doAction === true) {
-				//console.log("aler.doAction: ", this.pbxline);
 				this.performDelete(this.pbxline)
-					.then((deletedPbxline: PbxLineDto) => {
-						this.onPbxLineDeleted.emit(deletedPbxline);
+					.then(() => {
+						this.onDeletedPbxLine.emit();
+						console.log('tes asas...', this.service.pbxLines, this.pbxline)
 					})
 					.catch((error) => {
+						console.log('test err...', error)
 						let alert = new MaterialAlertMessageType();
 						alert.title = "ERROR";
 						alert.message = error;
@@ -382,27 +381,26 @@ export class CompanyPbxlineComponent {
 			}
 		});
 
-		let card = new IdCardType();
-		card.imgSrc = this.imgSrc;
-		card.title = this.lineName;
+		// let card = new IdCardType();
+		// card.imgSrc = this.imgSrc;
+		// card.title = this.lineName;
 
-		let factory = this.componentFactoryResolver.resolveComponentFactory(IdCardComponent);
-		let viewContainerRef: ViewContainerRef = dialogRef.componentInstance.viewContainerRef;
-		let componentRef: ComponentRef<IdCardComponent> = viewContainerRef.createComponent(factory);
-		let idCard: IdCardComponent = componentRef.instance;
-		idCard.idCard = card;
+		// let factory = this.componentFactoryResolver.resolveComponentFactory(IdCardComponent);
+		// let viewContainerRef: ViewContainerRef = dialogRef.componentInstance.viewContainerRef;
+		// let componentRef: ComponentRef<IdCardComponent> = viewContainerRef.createComponent(factory);
+		// let idCard: IdCardComponent = componentRef.instance;
+		// idCard.idCard = card;
 	}
 
-	async performDelete(pbxline: PbxLineDto): Promise<PbxLineDto> {
+	async performDelete(pbxline: PbxLineDto): Promise<void>  {
 		try {
-			let deletedCompanyPbxline: PbxLineDto = Object.create(pbxline) as PbxLineDto;
 			let accessToken: string = await this.service.getAccessToken();
 			await this.deleteAssociatedPbxLineReps(pbxline.pbxLineId!, accessToken);
 			await this.service.deletePbxLine(pbxline, accessToken);
-			return deletedCompanyPbxline;
+			return;
 		}
 		catch (e) {
-			throw (e);
+			throw(e);
 		}
 	}
 

@@ -85,9 +85,10 @@ export class CompanyPbxlinesPage {
 			.then((pbxLines: Array<PbxLineDto>) => {
 				this.service.pbxLines = pbxLines;
 				this.pbxLines = this.service.pbxLines;
+				console.log('pbxLines....', this.pbxLines)
 			})
 			.catch((error) => {
-				//console.log("error: ", error);
+				console.log("pbxLines error.... ", error);
 				let alert = new MaterialAlertMessageType();
 				alert.title = 'Warning';
 				alert.message = "Unable to retrieve list of Pbx Lines.";
@@ -96,18 +97,6 @@ export class CompanyPbxlinesPage {
 			.then(() => {
 				this.showGettingPbxlines = false;
 			})
-	}
+	}	
 
-	pbxlineDeleted(pbxline: PbxLineDto): void {
-		this.pbxLines = this.service.pbxLines;
-	}
-
-	pbxlineUpdated(pbxline: PbxLineDto): void {
-		this.pbxLines = this.service.pbxLines;
-	}
-
-	pbxlineAdded(pbxline: PbxLineDto): void {
-		console.log("pbxlineAdded", pbxline);
-		this.pbxLines = this.service.pbxLines;
-	}
 }

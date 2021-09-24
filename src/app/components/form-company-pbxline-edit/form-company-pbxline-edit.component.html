@@ -60,19 +60,21 @@
 			you can assign the employees to your PBX Lines
 		</p>
 	</div>
-
+	<br />
 	<mat-radio-group [(ngModel)]="isDisabled">
 		<mat-radio-button [value]="false">Active</mat-radio-button>
 		<mat-radio-button [value]="true">Disabled</mat-radio-button>
 	</mat-radio-group>
-
-	<div class="form-group">
-		<label><strong>Add PBX Line Icon: </strong></label>
-		<image-selector (onImageSelected)="onImageSelected($event)"></image-selector>
+	<br />
+	<div class="d-flex justify-content-between base-line">
+		<image-selector title="Add PBX Line Icon" (onImageSelected)="onImageSelected($event)"></image-selector>
+		<button (click)="submit()" class="btn btn-primary" *ngIf="!showProgress">
+			<i class="fa fa-plus"></i>
+			Update PBX Line
+		</button>
 	</div>
 
 	<div *ngIf="showProgress">
-
 		<div class="circle">
 			<div class="loader">
 				<div class="loader">
@@ -85,8 +87,4 @@
 			<p class="text-center">Please Wait</p>
 		</div>
 	</div>
-	<button (click)="submit()" class="btn btn-primary" *ngIf="!showProgress">
-		<i class="fa fa-plus"></i>
-		Update PBX Line
-	</button>
 </form>

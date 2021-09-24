@@ -12,12 +12,10 @@
 				Company Pbx Lines
 			</span>
 			<span>
-				<button-add-pbxline (onCompanyPbxlineAdded)="pbxlineAdded($event)"></button-add-pbxline>
+				<button-add-pbxline (onCompanyPbxlineAdded)="refresh()"></button-add-pbxline>
 			</span>
 			<span>
-				<button mat-button
-						class="btn-danger"
-						(click)="refresh()">
+				<button mat-button class="btn-danger" (click)="refresh()">
 					<mat-icon>refresh</mat-icon>
 					Refresh Pbx Line List
 				</button>
@@ -39,7 +37,7 @@
 						<div fxFlex *ngIf="pbxLines">
 							<mat-list>
 								<ng-container *ngFor="let pbxline of pbxLines">
-									<company-pbxline [pbxline]="pbxline" (onPbxlineDeleted)="pbxlineDeleted($event)" (onPbxlineUpdated)="pbxlineUpdated($event)"></company-pbxline>
+									<company-pbxline [pbxline]="pbxline" (onDeletedPbxLine)="refresh()"></company-pbxline>
 									<mat-divider></mat-divider>
 								</ng-container>
 							</mat-list>

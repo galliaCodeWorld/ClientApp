@@ -141,11 +141,11 @@ export class ContactComponent {
 			}
 		});
 
-		let factory = this.componentFactoryResolver.resolveComponentFactory(ContactCardComponent);
-		let viewContainerRef: ViewContainerRef = dialogRef.componentInstance.viewContainerRef;
-		let componentRef: ComponentRef<ContactCardComponent> = viewContainerRef.createComponent(factory);
-		let contactCard: ContactCardComponent = componentRef.instance;
-		contactCard.contact = this.contact;
+		// let factory = this.componentFactoryResolver.resolveComponentFactory(ContactCardComponent);
+		// let viewContainerRef: ViewContainerRef = dialogRef.componentInstance.viewContainerRef;
+		// let componentRef: ComponentRef<ContactCardComponent> = viewContainerRef.createComponent(factory);
+		// let contactCard: ContactCardComponent = componentRef.instance;
+		// contactCard.contact = this.contact;
 	}
 
 	async performContactDelete(contact: PhoneContactType): Promise<PhoneContactType> {
