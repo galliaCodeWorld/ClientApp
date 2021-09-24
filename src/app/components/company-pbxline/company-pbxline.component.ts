@@ -78,7 +78,6 @@ export class CompanyPbxlineComponent {
 	editCompanyPbxline(): void {
 		this.tryGetRepsFromServer()
 			.then((currentReps: Array<PbxLineRepDto>) => {
-				//console.log("currentReps from server: ", currentReps)
 				this.currentReps = currentReps;
 				let dialogRef = this.matDialog.open(FormCompanyPbxlineEditComponent, {
 					width: '80%',
@@ -98,7 +97,6 @@ export class CompanyPbxlineComponent {
 							dialogRef.close();
 						})
 						.catch((error) => {
-							//console.log("error: ", error);
 							let alert = new MaterialAlertMessageType();
 							alert.title = "ERROR";
 							alert.message = error;
@@ -110,7 +108,6 @@ export class CompanyPbxlineComponent {
 				});
 
 				dialogRef.componentInstance.onUpdateCompanyPbxlineImage.subscribe((dataUri: string) => {
-					//console.log("new image: ", dataUri);
 					this.newImage = dataUri;
 				});
 
@@ -123,7 +120,6 @@ export class CompanyPbxlineComponent {
 				});
 			})
 			.catch((error) => {
-				//console.log("error: ", error);
 				let alert = new MaterialAlertMessageType();
 				alert.title = "Warning";
 				alert.message = "Sorry, unable to retrieve PBX Line Representatives for this PBX Line";
@@ -168,27 +164,22 @@ export class CompanyPbxlineComponent {
 	}
 
 	processNewImage(newImage: string, accessToken: string): Promise<void> {
-		//console.log("processing newImage: ", newImage);
 		return new Promise<void>((resolve, reject) => {
 			if (this.service.isEmpty(newImage) === false) {
 				// if the new image is the defaultAvatar and the current image is not the default avatar, then delete the image
 				if (newImage === this.service.defaultAvatar && this.imgSrc !== this.service.defaultAvatar) {
-					//console.log("start delete image");
 					// delete the image
 					this.service.deletePbxLineImage(this.pbxline.pbxLineId ? this.pbxline.pbxLineId : 0, accessToken)
 						.then((updatedPbxline: PbxLineDto) => {
 							this.pbxline = updatedPbxline;
-							//console.log("end delete image");
 							resolve();
 						})
 				}
 				else if (newImage !== this.service.defaultAvatar && newImage !== this.imgSrc) {
-					//console.log("start add image");
 					// if the new image is not the defaultAvatar image add it
 					this.service.addPbxLineImage(newImage, this.pbxline.pbxLineId ? this.pbxline.pbxLineId : 0, accessToken)
 						.then((updatedPbxline: PbxLineDto) => {
 							this.pbxline = updatedPbxline;
-							//console.log("end add image");
 							resolve()
 						})
 						.catch((error) => {
@@ -197,13 +188,11 @@ export class CompanyPbxlineComponent {
 				}
 				else {
 					// nothing to process
-					//console.log("nothing to process");
 					resolve();
 				}
 			}
 			else {
 				// nothing to process
-				//console.log("nothing to process empty image");
 				resolve();
 			}
 		})
@@ -369,10 +358,8 @@ export class CompanyPbxlineComponent {
 				this.performDelete(this.pbxline)
 					.then(() => {
 						this.onDeletedPbxLine.emit();
-						console.log('tes asas...', this.service.pbxLines, this.pbxline)
 					})
 					.catch((error) => {
-						console.log('test err...', error)
 						let alert = new MaterialAlertMessageType();
 						alert.title = "ERROR";
 						alert.message = error;
